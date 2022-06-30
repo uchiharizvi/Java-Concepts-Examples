@@ -2,11 +2,19 @@ package org.java.tutorials.lambdas;
 
 public class Lambdas_Example_009 {
     public static void main(String[] args) {
-        Speakable speak = (message) -> {
-            String s1 = "I would like to say, ";
-            String s2 = s1 + message;
-            return s2;
+        //Thread Example without lambda
+        Runnable r1 = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Thread 1 is running...");
+            }
         };
-        System.out.println(speak.speak("time is precious."));
+        Thread t1 = new Thread(r1);
+        t1.start();
+
+        //Thread Example with lambda
+        Runnable r2 = ()-> System.out.println("Thread 2 is running...");
+        Thread t2 = new Thread(r2);
+        t2.start();
     }
 }
